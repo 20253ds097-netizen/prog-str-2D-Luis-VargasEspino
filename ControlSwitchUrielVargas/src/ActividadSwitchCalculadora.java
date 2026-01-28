@@ -49,9 +49,8 @@ public class ActividadSwitchCalculadora {
                 break;
         }
 
-        // 5. Impresión de resultados
+
         if (mostrarResultado) {
-            System.out.println("\n--- Resumen ---");
             System.out.println("Operación elegida: " + operacionTexto);
             System.out.println("Valores ingresados: a = " + a + ", b = " + b);
             System.out.println("Resultado: " + resultado);
