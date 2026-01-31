@@ -12,7 +12,7 @@ public class Main {
         int cMillasKm = 0;
 
         do {
-            System.out.println("\nMENÚ DE CONVERSIONES (1-4)(5-Salir)");
+            System.out.println("MENÚ DE CONVERSIONES (1-4)(5-Salir)");
             System.out.println("1 °C a °F");
             System.out.println("2 °F a °C");
             System.out.println("3 Km a Millas");
@@ -34,22 +34,22 @@ public class Main {
                 switch (opcion) {
                     case 1:
                         double f = (entrada * 9.0 / 5.0) + 32;
-                        System.out.printf("Resultado: %.2f%n", f);
+                        System.out.printf("Resultado:", f);
                         cCelsiusF++;
                         break;
                     case 2:
                         double c = (entrada - 32) * 5.0 / 9.0;
-                        System.out.printf("Resultado: %.2f%n", c);
+                        System.out.printf("Resultado:", c);
                         cFahrenheitC++;
                         break;
                     case 3:
                         double mi = entrada * 0.621371;
-                        System.out.printf("Resultado: %.2f%n", mi);
+                        System.out.printf("Resultado:", mi);
                         cKmMillas++;
                         break;
                     case 4:
                         double km = entrada / 0.621371;
-                        System.out.printf("Resultado: %.2f%n", km);
+                        System.out.printf("Resultado:", km);
                         cMillasKm++;
                         break;
                 }
@@ -61,7 +61,7 @@ public class Main {
 
         // Impresión del resumen solicitado
         int total = cCelsiusF + cFahrenheitC + cKmMillas + cMillasKm;
-        System.out.println("\n--- RESUMEN DE CONVERSIONES ---");
+        System.out.println("RESUMEN DE CONVERSIONES");
         System.out.println("Conversiones °C a °F: " + cCelsiusF);
         System.out.println("Conversiones °F a °C: " + cFahrenheitC);
         System.out.println("Conversiones Km a Millas: " + cKmMillas);
