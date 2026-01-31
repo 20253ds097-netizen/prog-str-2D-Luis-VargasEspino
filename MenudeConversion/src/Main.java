@@ -5,7 +5,6 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         int opcion = 0;
 
-        // Contadores inicializados
         int cCelsiusF = 0;
         int cFahrenheitC = 0;
         int cKmMillas = 0;
@@ -24,7 +23,7 @@ public class Main {
                 opcion = sc.nextInt();
             } else {
                 System.out.println("Error: Ingrese un número entre 1 y 5.");
-                sc.next(); // Limpiar el buffer para evitar bucle infinito
+                sc.next();
                 continue;
             }
 
@@ -59,9 +58,8 @@ public class Main {
 
         } while (opcion != 5);
 
-        // Impresión del resumen solicitado
         int total = cCelsiusF + cFahrenheitC + cKmMillas + cMillasKm;
-        System.out.println("RESUMEN DE CONVERSIONES");
+        System.out.println("RESUMEN");
         System.out.println("Conversiones °C a °F: " + cCelsiusF);
         System.out.println("Conversiones °F a °C: " + cFahrenheitC);
         System.out.println("Conversiones Km a Millas: " + cKmMillas);
