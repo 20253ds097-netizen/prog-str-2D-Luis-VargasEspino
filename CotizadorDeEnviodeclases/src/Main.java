@@ -1,81 +1,70 @@
 import java.util.Scanner;
-
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        GradeService service = new GradeService();
+        ShippingCalculator calc = new ShippingCalculator();
+        double peso = leerDoubleEnRango(sc, "Ingrese el peso (0.1 a 50.0 kg)", 0.1, 50.0);
+        int dist = leerIntEnRango(sc, "Ingrese la distancia (1 a 2000 km)", 1, 2000);
+        int serv = leerIntEnRango(sc, "Tipo de servicio (1-Estandar, 2-Express)", 1, 2);
+        boolean remota = leerBoolean(sc, "¿Es zona remota? (true/false)");
+        double subtotal = calc.calcularSubtotal(peso, dist, serv, remota);
+        double iva = calc.calcularIVA(subtotal);
+        double total = calc.calcularTotal(subtotal, iva);
+        imprimirTicket(serv, peso, dist, remota, subtotal, iva, total);
 
-        // 1. INPUTS usando los métodos obligatorios
-        String nombre = leerTextoNoVacio(sc, "Nombre del alumno: ");
-        double p1 = leerDoubleEnRango(sc, "Nota Parcial 1: ", 0, 100);
-        double p2 = leerDoubleEnRango(sc, "Nota Parcial 2: ", 0, 100);
-        double p3 = leerDoubleEnRango(sc, "Nota Parcial 3: ", 0, 100);
-        int asistencia = leerIntEnRango(sc, "Asistencia (0-100): ", 0, 100);
-        boolean proyecto = leerBoolean(sc, "¿Entrego proyecto? (true/false): ");
-
-        // 2. PROCESO (Llamando a GradeService como pide la restricción)
-        double promedio = service.calcularPromedio(p1, p2, p3);
-        double califFinal = service.calcularFinal(promedio, asistencia);
-        String estado = service.determinarEstado(califFinal, asistencia, proyecto);
-
-        // 3. OUTPUT
-        imprimirReporte(nombre, p1, p2, p3, promedio, asistencia, proyecto, califFinal, estado);
-    }
-
-    // --- MÉTODOS DE INPUT OBLIGATORIOS ---
-    public static String leerTextoNoVacio(Scanner sc, String msg) {
-        String texto = "";
-        while (texto.isEmpty()) {
-            System.out.print(msg);
-            texto = sc.nextLine().trim();
-        }
-        return texto;
+        sc.close();
     }
 
     public static double leerDoubleEnRango(Scanner sc, String msg, double min, double max) {
-        double valor;
+        double val;
         do {
             System.out.print(msg);
             while (!sc.hasNextDouble()) {
-                System.out.println("Error: Ingrese un numero decimal.");
+                System.out.println("Ingrese un numero.");
                 sc.next();
             }
-            valor = sc.nextDouble();
-        } while (valor < min || valor > max);
-        return valor;
+            val = sc.nextDouble();
+            if (val < min && val > max) {
+                System.out.println("Valor fuera de rango ");
+            }
+        } while (val < min && val > max);
+        return val;
     }
 
     public static int leerIntEnRango(Scanner sc, String msg, int min, int max) {
-        int valor;
+        int val;
         do {
             System.out.print(msg);
             while (!sc.hasNextInt()) {
-                System.out.println("Error: Ingrese un numero entero.");
+                System.out.println("Ingrese un numero entero.");
                 sc.next();
             }
-            valor = sc.nextInt();
-        } while (valor < min || valor > max);
-        return valor;
+            val = sc.nextInt();
+            if (val < min && val > max) {
+                System.out.println("Valor fuera de rango (" + min + "-" + max + ")");
+            }
+        } while (val < min && val > max);
+        return val;
     }
 
     public static boolean leerBoolean(Scanner sc, String msg) {
+        System.out.print(msg);
         while (true) {
-            System.out.print(msg);
-            String input = sc.next().toLowerCase();
+            String input = sc.next().toLowerCase(); // sc.next() lee hasta el espacio
             if (input.equals("true")) return true;
             if (input.equals("false")) return false;
-            System.out.println("Error: Ingrese solo 'true' o 'false'.");
+            System.out.print(" Escriba true o false: ");
         }
     }
-
-    // --- MÉTODO DE OUTPUT OBLIGATORIO ---
-    public static void imprimirReporte(String nom, double p1, double p2, double p3, double prom, int asis, boolean proy, double fin, String est) {
-        System.out.println("Alumno: " + nom);
-        System.out.println("Parciales: " + p1 + ", " + p2 + ", " + p3);
-        System.out.println("Promedio Parciales: " + prom);
-        System.out.println("Asistencia: " + asis + "%");
-        System.out.println("Entrego Proyecto: " + (proy ? "SI" : "NO"));
-        System.out.println("Calificacion Final: " + fin);
-        System.out.println("ESTADO: " + est);
+    public static void imprimirTicket(int servicio, double peso, int distancia, boolean remota,
+                                      double subtotal, double iva, double total) {
+        System.out.println("TICKET");
+        System.out.println("Servicio" + (servicio == 1 ? "Estandar" : "Express"));
+        System.out.println("Peso" + peso + " kg");
+        System.out.println("Distancia" + distancia + " km");
+        System.out.println("ZonaRemota" + (remota ? "Si" : "No"));
+        System.out.println("Subtotal " + subtotal);
+        System.out.println("IVA" + iva);
+        System.out.println("TOTAL" + total);
     }
 }
