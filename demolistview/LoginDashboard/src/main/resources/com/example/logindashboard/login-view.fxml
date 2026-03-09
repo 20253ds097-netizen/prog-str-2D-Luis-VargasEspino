@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" spacing="15.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.logindashboard.LoginController" prefWidth="350" prefHeight="400">
+    <padding>
+        <Insets bottom="30.0" left="30.0" right="30.0" top="30.0"/>
+    </padding>
+
+    <Label text="Iniciar Sesion">
+        <font>
+            <Font name="System Bold" size="24.0" />
+        </font>
+    </Label>
+
+    <TextField fx:id="emailField" promptText="Correo electronico" />
+    <PasswordField fx:id="passwordField" promptText="Contrasena" />
+
+    <Label fx:id="errorLabel" textFill="RED" wrapText="true" textAlignment="CENTER" />
+
+    <Button text="Ingresar" onAction="#handleLogin" maxWidth="Infinity" style="-fx-background-color: #2196F3; -fx-text-fill: white;" />
+</VBox>

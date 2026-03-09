@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" prefHeight="200.0" prefWidth="300.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.alancito.controllers.DashboardController">
+    <Label fx:id="welcomeLabel" style="-fx-font-size: 20px;"/>
+</VBox>
