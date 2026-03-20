@@ -25,11 +25,15 @@ public class PersonFileRepository {
 
 
     public void  appendNewLine(String Line) throws IOException {
-     Files.writeString(filePath,Line+System.lineSeparator(),StandardCharsets.UTF_8,
-             StandardOpenOption.APPEND);
+        Files.writeString(filePath,Line+System.lineSeparator(),StandardCharsets.UTF_8,
+                StandardOpenOption.APPEND);
 
     }
 
-
+    public void appendAllLines(List<String> lines) throws IOException {
+        Files.write(filePath, lines,
+                StandardCharsets.UTF_8,
+                StandardOpenOption.TRUNCATE_EXISTING);
+    }
 
 }
