@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<VBox spacing="10" alignment="CENTER" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demolistview.controllers.AppController">
+
+    <Label text="Registro de Contactos">
+        <font><Font name="System Bold" size="16.0" /></font>
+    </Label>
+
+    <TextField fx:id="txtNombre" promptText="Nombre" />
+    <TextField fx:id="txtTelefono" promptText="Teléfono" />
+    <ComboBox fx:id="cmbParentesco" promptText="Parentesco" />
+
+    <HBox spacing="5" alignment="CENTER">
+        <Button text="Agregar" onAction="#handleAgregar" />
+        <Button text="Buscar" onAction="#handleBuscar" />
+        <Button text="Actualizar" onAction="#handleActualizar" />
+        <Button text="Eliminar" onAction="#handleEliminar" />
+    </HBox>
+
+    <Button text="Limpiar" onAction="#handleLimpiar" />
+
+    <ListView fx:id="lvContactos" VBox.vgrow="ALWAYS" />
+
+</VBox>
